@@ -2,6 +2,7 @@
 layout: page
 title: "AI 口算作业批改系统"
 permalink: /projects/calculator/
+project_detail: true
 ---
 
 基于 SFML 3 + OpenCV 的 C++ 桌面口算作业批改系统，通过 Qwen-VL 视觉模型自动识别并批改学生口算作业。

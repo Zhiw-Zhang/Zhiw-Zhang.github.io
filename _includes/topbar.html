@@ -1,0 +1,103 @@
+<!-- The Top Bar -->
+
+<header id="topbar-wrapper" class="flex-shrink-0" aria-label="Top Bar">
+  <div
+    id="topbar"
+    class="d-flex align-items-center justify-content-between px-lg-3 h-100"
+  >
+    <nav id="breadcrumb" aria-label="Breadcrumb">
+      {% assign paths = page.url | split: '/' %}
+      {% assign breadcrumb_url = '' %}
+      {% assign projects_tab = site.tabs | where: 'slug', 'projects' | first %}
+      {% assign projects_title = projects_tab.title | default: '项目' %}
+      {% assign is_projects_tab = page.project_root == true or page.project_root == 'true' %}
+      {% assign is_project_detail = page.project_detail == true or page.project_detail == 'true' %}
+
+      {% if paths.size == 0 or page.layout == 'home' %}
+        <!-- index page -->
+        <span>{{ site.data.locales[include.lang].tabs.home | capitalize }}</span>
+
+      {% elsif is_projects_tab %}
+        <span>
+          <a href="{{ '/' | relative_url }}">
+            {{- site.data.locales[include.lang].tabs.home | capitalize -}}
+          </a>
+        </span>
+        <span>{{ projects_title }}</span>
+
+      {% elsif is_project_detail %}
+        <span>
+          <a href="{{ '/' | relative_url }}">
+            {{- site.data.locales[include.lang].tabs.home | capitalize -}}
+          </a>
+        </span>
+        <span>
+          <a href="{{ '/projects/' | relative_url }}">
+            {{- projects_title -}}
+          </a>
+        </span>
+        <span>{{ page.title }}</span>
+
+      {% else %}
+        {% for item in paths %}
+          {% if forloop.first %}
+            <span>
+              <a href="{{ '/' | relative_url }}">
+                {{- site.data.locales[include.lang].tabs.home | capitalize -}}
+              </a>
+            </span>
+
+          {% elsif forloop.last %}
+            <span>{{ page.title }}</span>
+
+          {% elsif page.layout == 'category' or page.layout == 'tag' %}
+            {% assign breadcrumb_url = breadcrumb_url | append: '/' | append: item %}
+            <span>
+              <a href="{{ breadcrumb_url | append: '/' | relative_url }}">
+                {{- site.data.locales[include.lang].tabs[item] | default: page.title -}}
+              </a>
+            </span>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </nav>
+    <!-- endof #breadcrumb -->
+
+    <button type="button" id="sidebar-trigger" class="btn btn-link" aria-label="Sidebar">
+      <i class="fas fa-bars fa-fw"></i>
+    </button>
+
+    <div id="topbar-title">
+      {% if page.layout == 'home' %}
+        {{- site.data.locales[include.lang].title | default: site.title -}}
+      {% elsif is_projects_tab %}
+        {{- projects_title -}}
+      {% elsif is_project_detail %}
+        {{- page.title -}}
+      {% elsif page.collection == 'tabs' or page.layout == 'page' %}
+        {{- site.data.locales[include.lang].tabs[page.slug] | default: page.title -}}
+      {% else %}
+        {{- site.data.locales[include.lang].layout[page.layout] | default: page.layout | capitalize -}}
+      {% endif %}
+    </div>
+
+    <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
+      <i class="fas fa-search fa-fw"></i>
+    </button>
+
+    <search id="search" class="align-items-center ms-3 ms-lg-0">
+      <i class="fas fa-search fa-fw"></i>
+      <input
+        class="form-control"
+        id="search-input"
+        type="search"
+        aria-label="search"
+        autocomplete="off"
+        placeholder="{{ site.data.locales[include.lang].search.hint | capitalize }}..."
+      >
+    </search>
+    <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">
+      {{- site.data.locales[include.lang].search.cancel -}}
+    </button>
+  </div>
+</header>
