@@ -9,37 +9,6 @@ layout: default
 
 {% assign posts = '' | split: '' %}
 
-<section class="home-hero">
-  <div class="home-hero__copy">
-    <p class="home-hero__eyebrow">Welcome</p>
-    <h2>知维 · {{ site.title }}</h2>
-    <br><br>
-  </div>
-
-  <div class="home-entry-grid">
-    <a class="home-entry-card home-entry-card--notes" href="{{ '/notes/' | relative_url }}">
-      <span class="home-entry-card__icon"><i class="fas fa-book-open"></i></span>
-      <span class="home-entry-card__label">学习笔记</span>
-      <span class="home-entry-card__text">整理技术学习、实践记录和知识点沉淀。</span>
-      <span class="home-entry-card__link">进入笔记 →</span>
-    </a>
-
-    <a class="home-entry-card home-entry-card--thoughts" href="{{ '/thoughts/' | relative_url }}">
-      <span class="home-entry-card__icon"><i class="fas fa-brain"></i></span>
-      <span class="home-entry-card__label">个人思考</span>
-      <span class="home-entry-card__text">记录观察、判断和不那么技术化的想法。</span>
-      <span class="home-entry-card__link">进入思考 →</span>
-    </a>
-
-    <a class="home-entry-card home-entry-card--projects" href="{{ '/projects/' | relative_url }}">
-      <span class="home-entry-card__icon"><i class="fas fa-code"></i></span>
-      <span class="home-entry-card__label">项目</span>
-      <span class="home-entry-card__text">展示正在做和做完的工具、程序和作品。</span>
-      <span class="home-entry-card__link">查看项目 →</span>
-    </a>
-  </div>
-</section>
-
 <!-- Get pinned posts on current page -->
 
 {% assign visible_start = paginator.page | minus: 1 | times: paginator.per_page %}

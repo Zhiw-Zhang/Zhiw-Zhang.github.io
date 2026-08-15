@@ -11,10 +11,6 @@
   noblank: true
   url: "mailto:Zhui-blog@outlook.com"
 
-- type: csdn
-  icon: "si si-csdn"
-  url: "https://blog.csdn.net/2504_93613804?type=blog"
-
 - type: rss
   icon: "fas fa-rss"
   noblank: true
