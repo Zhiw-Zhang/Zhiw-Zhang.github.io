@@ -8,35 +8,10 @@
     <nav id="breadcrumb" aria-label="Breadcrumb">
       {% assign paths = page.url | split: '/' %}
       {% assign breadcrumb_url = '' %}
-      {% assign projects_tab = site.tabs | where: 'slug', 'projects' | first %}
-      {% assign projects_title = projects_tab.title | default: '项目' %}
-      {% assign is_projects_tab = page.project_root == true or page.project_root == 'true' %}
-      {% assign is_project_detail = page.project_detail == true or page.project_detail == 'true' %}
 
       {% if paths.size == 0 or page.layout == 'home' %}
         <!-- index page -->
         <span>{{ site.data.locales[include.lang].tabs.home | capitalize }}</span>
-
-      {% elsif is_projects_tab %}
-        <span>
-          <a href="{{ '/' | relative_url }}">
-            {{- site.data.locales[include.lang].tabs.home | capitalize -}}
-          </a>
-        </span>
-        <span>{{ projects_title }}</span>
-
-      {% elsif is_project_detail %}
-        <span>
-          <a href="{{ '/' | relative_url }}">
-            {{- site.data.locales[include.lang].tabs.home | capitalize -}}
-          </a>
-        </span>
-        <span>
-          <a href="{{ '/projects/' | relative_url }}">
-            {{- projects_title -}}
-          </a>
-        </span>
-        <span>{{ page.title }}</span>
 
       {% else %}
         {% for item in paths %}
@@ -70,10 +45,6 @@
     <div id="topbar-title">
       {% if page.layout == 'home' %}
         {{- site.data.locales[include.lang].title | default: site.title -}}
-      {% elsif is_projects_tab %}
-        {{- projects_title -}}
-      {% elsif is_project_detail %}
-        {{- page.title -}}
       {% elsif page.collection == 'tabs' or page.layout == 'page' %}
         {{- site.data.locales[include.lang].tabs[page.slug] | default: page.title -}}
       {% else %}

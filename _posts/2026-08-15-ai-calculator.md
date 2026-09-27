@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: post
 title: "AI 口算作业批改系统"
-permalink: /projects/calculator/
-project_detail: true
+categories: [项目, C/C++]
+tags: [C++, SFML, OpenCV, Qwen-VL]
 ---
 
 基于 SFML 3 + OpenCV 的 C++ 桌面口算作业批改系统，通过 Qwen-VL 视觉模型自动识别并批改学生口算作业。
@@ -27,5 +27,3 @@ project_detail: true
 - [问题反馈](https://github.com/MOSS-vZ/Calculator/issues)
 
 ---
-
-*最后更新：2026年8月*
